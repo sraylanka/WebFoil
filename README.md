@@ -1,3 +1,24 @@
+# WebFoil / Foil Studio
+
+Browser-based airfoil analysis. Open **Analysis lab** for local worker calculations: experimental boundary layers and Reynolds batches, coupled multi-element panels, a ground slip wall, streamlines, lift-target camber design, five-digit NACA/CST sections, flap transforms, smoothing and JSON batches.
+
+**Read [Numerical methods and known limits](docs/NUMERICS.md) before using results.** Viscous estimates are not XFOIL-equivalent; full stall and pressure-target inverse design are not implemented. Sharp-cusp analytical lift error remains about 5.4% at 300 panels.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+pnpm test # Node 24+; analytical and numerical regression checks
+pnpm build
+```
+
+## Live site on GitHub Pages
+
+The `.github/workflows/pages.yml` workflow tests and builds the browser-only site and deploys it on pushes to `main` or `AeroMechanics`. In the repository's **Settings → Pages**, select **GitHub Actions** as the build source. If the initial run happened before Pages was enabled, rerun **Deploy WebFoil to GitHub Pages** from **Actions**. After successful deployment, the site is at `https://sraylanka.github.io/WebFoil/`.
+
+Build locally with `pnpm run build:pages` and inspect with `pnpm run preview:pages`. The `/WebFoil/` base path is set in `vite.pages.config.ts`. No server credentials or database are required. Analysis and saved projects stay in the browser. A public Pages site is accessible to anyone with the URL; experimental numerical limits remain visible in the app.
+
+The original framework setup documentation follows.
+
 # vinext-starter
 
 A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
